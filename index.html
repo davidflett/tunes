@@ -1,1 +1,38 @@
-<body>Test</body>
+<head>
+
+<script src="abcjs-basic-min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    /*
+var abc =  "blah";
+ fetch('https://davidflett.github.io/tunes/Little%20Diamond.abc')
+  .then(response => response.text())
+  .then((data) => {
+    abc = data;
+    console.log(abc);
+    console.log(abc);
+    
+ABCJS.renderAbc("paper", abc);
+  })*/
+
+  
+
+  function load() {
+fetch('https://davidflett.github.io/tunes/Little%20Diamond.abc')
+  .then(response => response.text())
+  .then((abc) => {
+    console.log(abc);
+    
+ABCJS.renderAbc("paper", abc);
+
+//ABCJS.renderAbc("paper", abc);
+			//ABCJS.renderAbc("paper", abc);
+		});
+    }
+</script>
+</head>
+
+<body onload="load()">
+<div class="container">
+    <div id="paper"></div>
+    </div>
+    </body>
