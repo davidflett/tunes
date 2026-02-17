@@ -45,3 +45,4 @@
 045 - Sally Gardens - 4/4 Reel - G
 046 - Freefalling - 4/4 Reel - F#min
 047 - Gärdebylåten - 4/4 Hornpipe - D
+048 - The Kerfunten - 6/8 Jig - G
