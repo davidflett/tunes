@@ -17,22 +17,65 @@ ABCJS.renderAbc("paper", abc);
   
 
   function load() {
-fetch('https://davidflett.github.io/tunes/Little%20Diamond.abc')
-  .then(response => response.text())
-  .then((abc) => {
-    console.log(abc);
+
+  var tunes = [];
+
+  fetch('https://davidflett.github.io/tunes/list.txt')
+    .then(response => response.text())
+    .then((index) => {
+      //console.log(index);
+      tunes = index.split("\n");
+      //console.log("tunes: " + tunes);
+      console.log("tunes length: " + tunes.length);
+      setList(tunes);
+    });
+  }
+
+  function setList(tunes) {    
+			var select = document.getElementById("tune-selector")
+			var option = document.createElement("option");
+			var optionContent = document.createTextNode("-- select tune --");
+			option.appendChild(optionContent);
+			select.appendChild(option);
+
+    for (var i = 0; i < tunes.length; i++) {
+      console.log("adding tune: " + tunes[i]);
+				option = document.createElement("option");
+				optionContent = document.createTextNode(tunes[i]);
+				option.appendChild(optionContent);
+				option.setAttribute('value', tunes[i]);
+				select.appendChild(option);
+			}
+			select.addEventListener("change", setTune);
+
+//fetch('https://davidflett.github.io/tunes/Little%20Diamond.abc')
+//  .then(response => response.text())
+//  .then((abc) => {
+    //console.log(abc);
     
-ABCJS.renderAbc("paper", abc);
+//ABCJS.renderAbc("paper", abc);
 
 //ABCJS.renderAbc("paper", abc);
 			//ABCJS.renderAbc("paper", abc);
-		});
+		//});
     }
+
+    
+		function setTune() {
+			var index = this.value
+      fetch('https://davidflett.github.io/tunes/' + index)
+      .then(response => response.text())
+      .then((abc) => {
+        console.log(abc);
+          ABCJS.renderAbc("paper", abc, { startingTune: index});
+      });
+		}
+
 </script>
 </head>
 
 <body onload="load()">
-<div class="container">
+<div class="container"><select id="tune-selector"></select>
     <div id="paper"></div>
     </div>
     </body>
